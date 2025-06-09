@@ -7,7 +7,7 @@ import numpy as np
 def calc_integral_cosine_pow_n(power: int, interval: list):
     """
     Calcule l'intégrale de cosinus à une puissance n.
-    Cette fonction est récursive: elle s'appelle elle-même, pour simuler le comportement d'une suite.
+    Cette fonction est récursive : elle s'appelle elle-même, pour simuler le comportement d'une suite.
     On nomme I(n) cette suite
     """
     if power == 0:  # I(0)
@@ -72,12 +72,13 @@ def calc_type2_no_power(poly_up, poly_down, a, b):
     """
     alpha = poly_down[1] / 2
     beta = poly_down[0] - (poly_down[1] / 2) ** 2
-    left_integral = poly_up[1] / 2 * (np.log(abs(b**2 + poly_down[1] * b + poly_down[0])) - np.log(abs(a**2 + poly_down[1] * a + poly_down[0])))
 
+    left_integral = poly_up[1] / 2 * (np.log(abs(b**2 + poly_down[1] * b + poly_down[0])) - np.log(abs(a**2 + poly_down[1] * a + poly_down[0])))
     right_integral = (poly_up[0] - poly_down[1] * poly_up[1] / 2) * 1/np.sqrt(beta) * (
             np.arctan((b + alpha) / (np.sqrt(beta)))
             - np.arctan((a + alpha) / (np.sqrt(beta)))
     )
+
     return left_integral + right_integral
 
 

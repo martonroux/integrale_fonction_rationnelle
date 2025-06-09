@@ -160,7 +160,6 @@ def calc_integral(poly_up: list, poly_down: list, a, b):
     constants = solve_linear_system(whole_matrix, rest_poly_up + [0 for _ in range(len(poly_down) - len(rest_poly_up))])['solution']
     integral = 0
     constant_idx = 0
-
     for i in range(len(unique)):  # Pour chaque élément simple, on calcule son intégrale, et on l'ajoute au résultat
         if unique[i].imag == 0:
             for j in range(1, count[i] + 1):
@@ -177,15 +176,17 @@ def calc_integral(poly_up: list, poly_down: list, a, b):
                 )
                 constant_idx += 2
 
+    integral *= 1/poly_down[-1]
+
     # Ajouter l'intégrale de la partie entière
     integral += integrate_floored_polynomial(floored_poly_up, a, b)
     return integral
 
 
 if __name__ == "__main__":
-    poly_up = [2, 1, 1, 1, 1]
-    poly_down = [1, -2, 1, 1]
-    a, b = 1, 2
+    poly_up = [1, 6, 0, -12, 0, 17]
+    poly_down = [14, 12, -18]
+    a, b = 2, 3
     result = calc_integral(poly_up, poly_down, a, b)
 
     print("Calcule l'intégrale de:")
@@ -201,4 +202,4 @@ if __name__ == "__main__":
         string += val
     print(f"{string}")
 
-    print(f"\nL'intégrale entre {a} et {b} vaut: {result}")
+    print(f"\nValeur entre {a} et {b}: {result}")
